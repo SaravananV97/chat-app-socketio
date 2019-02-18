@@ -1,0 +1,13 @@
+
+.flex-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.messages{
+    text-align: left;
+}
+
+.messagebox{
+    bottom: 0;
+    }

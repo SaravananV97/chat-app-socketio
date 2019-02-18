@@ -1,0 +1,16 @@
+.messagebox{
+    display: flex;
+    flex-direction: row;
+}
+
+.send{
+    margin-left: 30px;
+}
+
+
+
+
+
+
+
+
