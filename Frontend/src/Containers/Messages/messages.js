@@ -1,35 +1,37 @@
 import React, {Component} from "react";
 import "./messages.css";
-import io from "socket.io-client";
-
-var socket = io("http://localhost:5000?token=123");
+import {connect} from "react-redux";
+import * as actionCreators from "../../Store/Action/actionCreators"
 
 class Messages extends Component{
 
-    constructor(props){
-        super(props);
-        this.state = {messages: []}
-    }
-
     render(){
-        socket.on("messageToClient", (data) => {
-            console.log(data)
-            let msgs = this.state.messages.slice();
-            msgs[msgs.length] = {from:data.from, msg: data.msg};
-            this.setState({messages: [...msgs]});
-            console.log(`from ${data.from}: ${data.msg} with id ${data.id}`);
-        });
-        socket.on("disconnect", () => socket.removeAllListeners())
+        const k = this.props.messages.django;
 
         return(
             <div className = "messages">
-                {this.state.messages.map((msg, index) => {
-                    return <p key = {index}>{msg.from} : {msg.msg}</p>;
+                {k === undefined?null:k.map((msg, index) => {
+                    const name = msg[1] === undefined?"django":"server";
+                    const idx =  msg[1] === undefined?msg[0]:msg["1"];
+                    return <p key = {index}>{name} : {idx}</p>
                 })}
             </div>
          );
     }
 }
 
-export default Messages;
+const mapDispatchToProps = (dispatch) => {
+    return{
+        addMessage: (from, msg) => dispatch(actionCreators.addMessage(from, msg))
+    }
+}
+
+const mapStateToProps = (state) => {
+
+    return {
+        messages: state.messages
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);
 

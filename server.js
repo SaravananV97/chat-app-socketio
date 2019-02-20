@@ -51,10 +51,11 @@ io.on("connection", (client) => {
     client.name = "django"
     const {handleNewUser, handleLeftUser} = eventHandler(client, clientsManager);
     handleNewUser();
+    client.emit("messageFromServer", {from: "django", msg:{1:"welcome"}});
     client.on("disconnect", () => handleLeftUser);
     client.on("messageFromClient", (data) => {
-    console.log(data);
-    const {sendFromServer} = messageHandler(data, clientsManager);           
+      console.log(data);
+      const {sendFromServer} = messageHandler(data, clientsManager);           
     sendFromServer();
         });
     });    
