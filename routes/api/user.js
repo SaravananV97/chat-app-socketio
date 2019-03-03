@@ -6,28 +6,37 @@ const jwt = require("jsonwebtoken");
 
 router.post("/register", (req, res) => {
     
-    const username = req.body.username;
+    const username = req.body.userName;
     const email = req.body.email;
     const password = req.body.password;
-
+    console.log({username, email, password});
     User.findOne({username}).then((user) =>{
-
         if(user){
-            res.status(403).json({err: "Username already exists"});
+            res.json({userName: "Username already exists"});
             return;
         }
         const newUser = new User({username, email, password});
-        newUser.save().then(() => res.status(201).json({msg: "User registration success"}))
-    })
+        newUser.save().then((user) => {
+            payload = {id: user.id, username: user.username};
+            jwt.sign(payload, jwtSecret, {expiresIn: 24*60*60}, (err, token) => {
+                if(err){
+                    throw new Error(err);
+                }
+                else{
+                    res.json({token});
+                }
+            });
+            })
     .catch((err) => {
         throw new Error(err);
     });
 });
+});
 
 router.post("/login", async (req, res) => {
-    const username = req.body.username;
+    const username = req.body.userName;
     const password = req.body.password;
-
+    console.log({username, password})
     User.findOne({username}).then( async (user) => {
         if(user){
             const isMatched = await user.isValidPassword(password);
@@ -43,8 +52,11 @@ router.post("/login", async (req, res) => {
                 });
             }
             else{
-                res.status(401).json({msg: "Invalid Password"});
+                res.json({passwordErr: "Invalid Password"});
             } 
+        }
+        else{
+            res.json({userErr: "Invalid userName"});
         }
     })
     .catch(err => {throw new Error(err)}) 

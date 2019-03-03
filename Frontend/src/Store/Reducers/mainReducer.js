@@ -3,7 +3,9 @@ import * as actionTypes from "../Action/actionTypes";
 
 const initState = {
     socket: null,
-    messages: {}
+    messages: {},
+    userName:"",
+    onlinePeople:[]
 }
 
 const mainReducer = (state = initState, action) => {
@@ -18,6 +20,12 @@ const mainReducer = (state = initState, action) => {
                 msgs[name].push(action.payload.msg);
             else msgs[name] = [action.payload.msg];
             return {...state, messages: {...msgs}} 
+        case actionTypes.updateOnline:
+            let people = action.payload.people;
+            people = people.filter(user => user !== state.userName)
+            return {...state, onlinePeople: [...people]}
+        case actionTypes.setUserName:
+            return {...state, userName: action.payload.name}
         default: return state;
     }
 } 

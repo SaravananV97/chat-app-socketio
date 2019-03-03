@@ -23,10 +23,14 @@ const clientsManager = () => {
         return clientsMap.has(name);
     };
 
+    const getAllClients = () => {
+        return Array.from(clientsMap.values());
+    }
+
     return {
         addClient, removeClient,
         getAvailableUsers, isOnline,
-        getClientByName
+        getClientByName, getAllClients
     };
 }
 

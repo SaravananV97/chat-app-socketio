@@ -11,10 +11,10 @@ const convListItem = props => {
         <Avatar alt="Remy Sharp" src="" />
       </ListItemAvatar>
       <ListItemText
-        primary="Brunch this weekend?"
+        primary= {props.name}
         secondary={
           <React.Fragment>
-            {"I'll be in your neighborhood doing errands this…"}
+            {"I am that 1 in 10000 nibbas!"}
           </React.Fragment>
         }
       />

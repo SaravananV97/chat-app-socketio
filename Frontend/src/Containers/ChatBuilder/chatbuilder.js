@@ -1,14 +1,20 @@
 import React, {Component} from "react";
 import Appbar from "../../Components/AppBar/AppBar";
 import ConvList from "../../Components/ConvList/ConvList";
-import Conversation from "../Conversation/conversation";
+import MessageBox from "../../Components/MessageBox/messagebox";
+import ConvHeader from "../../Components/ConvHeader/convHeader";
+import Messages from "../Messages/messages";
+
 import "./chatbuilder.css";
+
+
 class ChatBuilder extends Component{
 
     handleConvClick = item => {
         console.log("Showing conversation...");
       };
-    
+  
+      
       render() {
         return (
           <div className="app">
@@ -17,12 +23,19 @@ class ChatBuilder extends Component{
             <ConvList className = "list" handleConvClick={this.handleConvClick} />
           </div>
           <div className = "conversation">  
-            <Conversation />  
-          </div>
-          </div>
+            <ConvHeader  />
+            <Messages />
+            </div>
+            <div className = "messagebox">
+            <MessageBox />
+            </div>
+        </div>
         );
       }
   }
+
+
+
 
 export default ChatBuilder;
 

@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import "./messagebox.css";
 import {connect} from "react-redux";
 import * as actionCreators from "../../Store/Action/actionCreators";
+
 class MessageBox extends Component {
 
     constructor(props){
@@ -12,20 +13,19 @@ class MessageBox extends Component {
 
     handleInputChange = (event) => {
         this.setState({currentMsg: event.target.value});
-        console.log(this.state.currentMsg);
     }
 
     sendMessage = () => {
         console.log("Emitting...");
-        this.props.socket.emit("messageFromClient", {msg: this.state.currentMsg, from: "django"});
-        this.props.addMessage("django", {0:this.state.currentMsg});
+        this.props.socket.emit("messageFromClient", {msg: this.state.currentMsg, from: "django", to: "sam_sepiol"});
+        this.props.addMessage(this.props.userName, {0:this.state.currentMsg});
     }
 
     render(){
         return (
             <div className = "messagebox"> 
                 <div className = "message">
-                <textarea onChange = {this.handleInputChange} rows="4" cols="50">
+                <textarea onChange = {this.handleInputChange} rows="8" cols="100">
                 </textarea>
             </div>
             <div className = "send">
@@ -40,7 +40,8 @@ class MessageBox extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        socket : state.socket
+        socket : state.socket,
+        userName: state.userName
     }
 }
 
@@ -49,7 +50,6 @@ const mapDispatchToProps = (dispatch) => {
         addMessage: (from, msg) => dispatch(actionCreators.addMessage(from, msg))
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageBox);
 

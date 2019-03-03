@@ -36,26 +36,16 @@ const messageHandler = MessageHandler();
 
 app.use("/api/users", user);
 
-io.use((socket, next) => {
-  let token = socket.handshake.query.token;
-  if (token === "123") {
-    socket.name = "django";
-    return next();
-  }
-  return next(new Error('authentication error'));
-});
-
 io.on("connection", (client) => {
 
     console.log(`Client id: ${client.id}`);
-    client.name = "django"
     const {handleNewUser, handleLeftUser} = eventHandler(client, clientsManager);
-    handleNewUser();
+    client.on("makeOnline", (name) => handleNewUser(name))
     client.emit("messageFromServer", {from: "django", msg:{1:"welcome"}});
-    client.on("disconnect", () => handleLeftUser);
+    client.on("disconnect", handleLeftUser);
     client.on("messageFromClient", (data) => {
       console.log(data);
       const {sendFromServer} = messageHandler(data, clientsManager);           
-    sendFromServer();
+      sendFromServer();
         });
     });    

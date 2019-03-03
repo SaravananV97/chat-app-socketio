@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import MessageBox from "../../Components/MessageBox/messagebox";
-import ConvHeader from "../../Components/ConvHeader/convHeader";
-import Messages from "../Messages/messages";
+
 import "./conversation.css";
 
 class Conversation extends Component{

@@ -8,4 +8,11 @@ export const addMessage = (from, msg) => {
     return {type: actionTypes.addNewMessage, payload: {name: from, msg}}
 }
 
+export const updateOnline = (people) => {
+    return {type: actionTypes.updateOnline, payload: {people}}
+}
+
+export const setUserName = (name) => {
+    return {type: actionTypes.setUserName, payload: {name}}
+}
 

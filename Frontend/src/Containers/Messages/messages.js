@@ -6,15 +6,17 @@ import * as actionCreators from "../../Store/Action/actionCreators"
 class Messages extends Component{
 
     render(){
-        const k = this.props.messages.django;
+        const k = this.props.messages.django; // replace with current opened chatbox
 
         return(
             <div className = "messages">
+            <ul>
                 {k === undefined?null:k.map((msg, index) => {
                     const name = msg[1] === undefined?"django":"server";
                     const idx =  msg[1] === undefined?msg[0]:msg["1"];
-                    return <p key = {index}>{name} : {idx}</p>
+                    return <li key = {index}>{name} : {idx}</li>
                 })}
+                </ul>
             </div>
          );
     }

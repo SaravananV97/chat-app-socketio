@@ -1,0 +1,33 @@
+.app{
+    overflow: hidden;
+    margin: 0;
+}
+
+.chats{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    overflow-y: scroll;
+}
+
+.conversation{
+    padding-left: 20px; 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.messagebox{
+    position: absolute;
+    bottom: 0%;
+    left: 33%;
+    padding-left: 10px;
+}
+
+
