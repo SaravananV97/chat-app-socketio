@@ -16,10 +16,6 @@ class App extends Component {
 
   componentDidMount = () => {
       this.props.assignSocket(socket);
-      socket.on("messageFromServer", (data) => {
-        console.log(data);
-        this.props.addMessage(data.from, data.msg);
-    })
   }
   
   render() {

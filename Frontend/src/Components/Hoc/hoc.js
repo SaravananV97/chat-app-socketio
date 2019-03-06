@@ -7,14 +7,16 @@ import {connect} from 'react-redux';
 class HOC extends Component{
 
     componentDidMount = () => {
+        if(this.props.socket !== null){
         this.props.socket.on("onlinePeople", (data) => {
           console.log(data);
           this.props.updateOnline(data);
         })
         this.props.socket.on("messageFromServer", (data) => {
-          console.log(data);
-          this.props.addMessage(data.from, data.msg);
+          const msg = data.msg;
+          this.props.addMessage(data.from, {1:msg});
       })
+    }
     }
 
     render(){
@@ -34,7 +36,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-        updateOnline: (data) => dispatch(actionCreator.updateOnline(data))
+        updateOnline: (data) => dispatch(actionCreator.updateOnline(data)),
+        addMessage: (from, msg) => dispatch(actionCreator.addMessage(from, msg))
     }
 }
 

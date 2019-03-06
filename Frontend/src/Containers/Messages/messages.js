@@ -6,15 +6,14 @@ import * as actionCreators from "../../Store/Action/actionCreators"
 class Messages extends Component{
 
     render(){
-        
-        const k = this.props.messages.django; // replace with current opened chatbox
-
+        const messages = this.props.messages[this.props.currentChat]; // replace with current opened chatbox
+        console.log(messages);
         return(
             <div className = "messages">
             <ul>
-                {k === undefined?null:k.map((msg, index) => {
-                    const name = msg[1] === undefined?"django":"server";
-                    const idx =  msg[1] === undefined?msg[0]:msg["1"];
+                {messages === undefined?null:messages.map((msg, index) => {
+                    const name = msg[1] === undefined?"You":this.props.currentChat;
+                    const idx =  msg[1] === undefined?msg[0]:msg[1];
                     return <li key = {index}>{name} : {idx}</li>
                 })}
                 </ul>
@@ -32,7 +31,9 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
 
     return {
-        messages: state.messages
+        messages: state.messages,
+        userName: state.userName,
+        currentChat: state.currentChat
     }
 }
 

@@ -17,6 +17,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistConfig = {
     key: 'root',
     storage,
+    whitelist: ['socket', 'userName']
   }
 
 const persistedReducer = persistReducer(persistConfig, mainReducer);
@@ -27,7 +28,7 @@ const logger = store => next => action => {
     return result;
   }
 
-const store = createStore(persistedReducer);
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(logger)));
 const persistor = persistStore(store);
 
 const app = (

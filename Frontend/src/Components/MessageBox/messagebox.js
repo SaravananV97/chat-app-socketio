@@ -17,8 +17,8 @@ class MessageBox extends Component {
 
     sendMessage = () => {
         console.log("Emitting...");
-        this.props.socket.emit("messageFromClient", {msg: this.state.currentMsg, from: "django", to: "sam_sepiol"});
-        this.props.addMessage(this.props.userName, {0:this.state.currentMsg});
+        this.props.socket.emit("messageFromClient", {msg: this.state.currentMsg, from: this.props.userName, to: this.props.currentChat});
+        this.props.addMessage(this.props.currentChat, {0:this.state.currentMsg});
     }
 
     render(){
@@ -41,7 +41,8 @@ class MessageBox extends Component {
 const mapStateToProps = (state) => {
     return {
         socket : state.socket,
-        userName: state.userName
+        userName: state.userName,
+        currentChat: state.currentChat
     }
 }
 

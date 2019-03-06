@@ -14,7 +14,7 @@ const convListItem = props => {
         primary= {props.name}
         secondary={
           <React.Fragment>
-            {"I am that 1 in 10000 nibbas!"}
+            {"I am Available"}
           </React.Fragment>
         }
       />

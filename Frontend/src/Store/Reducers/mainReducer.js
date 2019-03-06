@@ -5,7 +5,7 @@ const initState = {
     socket: null,
     messages: {},
     userName:"",
-    currentChat: "Start Chatting",
+    currentChat: "server",
     onlinePeople:[]
 }
 
@@ -20,7 +20,7 @@ const mainReducer = (state = initState, action) => {
             if(msgs.hasOwnProperty(name))
                 msgs[name].push(action.payload.msg);
             else msgs[name] = [action.payload.msg];
-            return {...state, messages: {...msgs}} 
+            return {...state, messages: { ...msgs}} 
         case actionTypes.updateOnline:
             let people = action.payload.people;
             people = people.filter(user => user !== state.userName)
