@@ -24,7 +24,7 @@ class HOC extends Component{
         );
     } 
 
-}
+} 
 
 const mapStateToProps = (state) => {
     return {

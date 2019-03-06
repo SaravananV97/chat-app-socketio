@@ -16,3 +16,7 @@ export const setUserName = (name) => {
     return {type: actionTypes.setUserName, payload: {name}}
 }
 
+export const setCurrentChat = (currentChat) => {
+    return {type: actionTypes.setCurrentChat, payload: {currentChat}}
+} 
+

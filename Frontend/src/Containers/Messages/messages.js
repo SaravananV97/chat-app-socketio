@@ -6,6 +6,7 @@ import * as actionCreators from "../../Store/Action/actionCreators"
 class Messages extends Component{
 
     render(){
+        
         const k = this.props.messages.django; // replace with current opened chatbox
 
         return(

@@ -5,6 +5,7 @@ const initState = {
     socket: null,
     messages: {},
     userName:"",
+    currentChat: "Start Chatting",
     onlinePeople:[]
 }
 
@@ -26,6 +27,10 @@ const mainReducer = (state = initState, action) => {
             return {...state, onlinePeople: [...people]}
         case actionTypes.setUserName:
             return {...state, userName: action.payload.name}
+        case actionTypes.setCurrentChat:
+            const currentChat = action.payload.currentChat;
+            console.log({currentChat})
+            return {...state, currentChat: action.payload.currentChat }
         default: return state;
     }
 } 

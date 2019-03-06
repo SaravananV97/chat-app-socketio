@@ -8,7 +8,7 @@ function convList(props) {
     <List>
       {props.people.map((user, index) => {
        return (
-          <div key = {index} onClick={() => props.handleConvClick(index)}>
+          <div key = {index} onClick={() => props.handleConvClick(props.people[index])}>
              <ConvListItem name = {user} />
           </div>
           );

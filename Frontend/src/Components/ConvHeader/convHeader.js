@@ -16,7 +16,7 @@ const convHeader = (props) => {
         <AppBar style = {styles} className = "header" position="static" color="default">
           <Toolbar>
             <Typography variant="h6" color="inherit">
-              Recipient Name
+                {props.name}
             </Typography>
           </Toolbar>
         </AppBar>
