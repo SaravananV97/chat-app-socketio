@@ -10,7 +10,7 @@ import * as actionCreator from "./Store/Action/actionCreators";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 
-const socket = io("https://pacific-ravine-98350.herokuapp.com");
+const socket = io(`https://pacific-ravine-98350.herokuapp.com/${process.env.PORT}`);
 
 class App extends Component {
 
