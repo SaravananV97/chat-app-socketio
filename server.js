@@ -54,7 +54,7 @@ toneAnalyzer.analyzeTone("").then((res) => console.log(res))
 app.use("/api/users", user);
 
 io.on("connection", (client) => {
-
+    console.log(ClientsManager.getAvailableUsers());
     // console.log(`Client id: ${client.id}`);
     const {handleNewUser, handleLeftUser} = eventHandler(client, clientsManager);
     client.on("makeOnline", (name) => handleNewUser(name))
