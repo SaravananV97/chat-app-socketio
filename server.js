@@ -17,9 +17,9 @@ const db = require("./config/keys").mongodbURI;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get("/", (req, res) => {
-    res.json({msg: "welcome to the chat app"});
-});
+// app.get("/", (req, res) => {
+//     res.json({msg: "welcome to the chat app"});
+// });
 
 if(process.env.NODE_ENV === "production"){
 
