@@ -7,7 +7,6 @@ class Messages extends Component{
 
     render(){
         const messages = this.props.messages[this.props.currentChat]; // replace with current opened chatbox
-        console.log(messages);
         return(
             <div className = "messages">
             <ul>
