@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://https://pacific-ravine-98350.herokuapp.com",
+  "proxy": "https://pacific-ravine-98350.herokuapp.com",
   "eslintConfig": {
     "extends": "react-app"
   },
