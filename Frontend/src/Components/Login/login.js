@@ -80,6 +80,7 @@ class Login extends Component{
         localStorage.setItem("token", res.data.token);
         const info = decode(res.data.token);
         this.props.setUserName(info.username);
+        console.log(userName);
         this.props.socket.emit("makeOnline", info.username);
         this.props.history.push(`/chat/${info.id}`);
       }

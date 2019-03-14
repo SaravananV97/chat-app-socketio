@@ -3,6 +3,7 @@ const makeHandler = () => {
     const eventHandler = (client, clientsManager) => {
 
         const handleNewUser = (name) => {
+            console.log("making..." + name  + "online");
             client.name = name;
             clientsManager.addClient(client);
             let clients = clientsManager.getAllClients();
