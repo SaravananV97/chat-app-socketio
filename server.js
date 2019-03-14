@@ -56,7 +56,8 @@ io.on("connection", (client) => {
     console.log(`Client id: ${client.id}`);
     console.log(clientsManager.getAvailableUsers());
     const {handleNewUser, handleLeftUser} = eventHandler(client, clientsManager);
-    client.on("makeOnline", (name) => handleNewUser(name))
+    client.on("makeOnline", (name) => handleNewUser(name));
+    client.on("test", (data) => console.log(data));
     client.emit("messageFromServer", {from: "server", msg:{1:"welcome"}});
     client.on("disconnect", handleLeftUser);
     client.on("messageFromClient", (data) => {
