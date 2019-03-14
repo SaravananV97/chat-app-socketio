@@ -46,7 +46,7 @@ const MessageHandler = require("./Controllers/MessageHandler");
 const clientsManager = ClientsManager();
 const eventHandler = EventHandler();
 const messageHandler = MessageHandler();
-
+console.log(ClientsManager.getAvailableUsers());
 toneAnalyzer.analyzeTone("").then((res) => console.log(res))
             .catch((err) => console.log(err));
 
@@ -54,7 +54,6 @@ toneAnalyzer.analyzeTone("").then((res) => console.log(res))
 app.use("/api/users", user);
 
 io.on("connection", (client) => {
-    console.log(ClientsManager.getAvailableUsers());
     // console.log(`Client id: ${client.id}`);
     const {handleNewUser, handleLeftUser} = eventHandler(client, clientsManager);
     client.on("makeOnline", (name) => handleNewUser(name))
