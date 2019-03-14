@@ -35,7 +35,7 @@ mongoose.connect(db, {useNewUrlParser: true})
         .then(() => console.log("Connected to DB"))
         .catch(err => {throw new Error(err)});
 
-const server = app.listen(5000, () => console.log("Server Running..."));
+const server = app.listen(process.env.PORT || 5000, () => console.log("Server Running..."));
 const io = socket(server);
 
 const ClientsManager = require("./Controllers/ClientsManager");
