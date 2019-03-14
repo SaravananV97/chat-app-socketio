@@ -2,7 +2,7 @@ node_modules/
 
 dummy_client.html
 
-config/keys.js
+config/keys_dev.js
 
 client-socket.js
 
